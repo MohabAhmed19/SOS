@@ -49,7 +49,7 @@ void start_button()
 /** INITIALIZATION TASK **/
 void APP_init()
 {
-	INT2_INIT();  /** INITIALIZE EXTERNAL INTERRUPT 0 **/
+	INT0_INIT();  /** INITIALIZE EXTERNAL INTERRUPT 0 **/
 	
 	LED_INIT(LED1_PORT , LED1_PIN); /** LED 1 INITILIZATION **/
 
@@ -57,7 +57,7 @@ void APP_init()
 	
 	Button_init(); /** BUTTON INITIALIZATION **/
 	
-	EXTINT2_setcallback(start_button); /** CALLBACK FUNCTION OF EXTINT0 **/
+	EXTINT0_setcallback(start_button); /** CALLBACK FUNCTION OF EXTINT0 **/
 }
 
 /** SOS STOP TASK **/

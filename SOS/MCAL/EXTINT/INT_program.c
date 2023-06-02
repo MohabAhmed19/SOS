@@ -15,7 +15,7 @@
 #include "INT_private.h"
 #include "INT_config.h"
 
-void ( * ptr_func_exint2_callback ) ( void );  /** GLOBAL VARIABLE FOR TIMER0 CALL BACK **/
+void ( * ptr_func_exint0_callback ) ( void );  /** GLOBAL VARIABLE FOR TIMER0 CALL BACK **/
 
 /********************************************************/
 /** FUNCTION TO SET THE GLOBAL INTERRUPT ENABLE FLAG    */
@@ -80,9 +80,9 @@ void INT0_INIT(void)
 /** ARGUMENTS  : void (*ptr)(void) (PINTER TO CALL BACK FUNCTION)      **/
 /** RETURNS    : VOID                                                  **/
 /************************************************************************/
-void EXTINT2_setcallback( void (*ptr_func)(void) )
+void EXTINT0_setcallback( void (*ptr_func)(void) )
 {
-	ptr_func_exint2_callback = ptr_func; /** TIMER0 GLOBAL POINTER POINTS TO THE PASSED FUNCTION **/
+	ptr_func_exint0_callback = ptr_func; /** TIMER0 GLOBAL POINTER POINTS TO THE PASSED FUNCTION **/
 }
 
 /********************************************************/
@@ -146,7 +146,7 @@ void INT2_INIT(void)
 }
 
 /** EXTERNAL INTERRUPT 0 ISR **/
-ISR(INT2_vect)
+ISR(INT0_vect)
 {
-	ptr_func_exint2_callback(); 
+	ptr_func_exint0_callback(); 
 }

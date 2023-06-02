@@ -10,12 +10,12 @@
 #include "../../MCAL/dio/DIO_interface.h"
 
 /** LED 1 CONFIGURATIONS IN PORTC , PIN2  */
-#define LED1_PORT   DIO_PORTB
-#define LED1_PIN    DIO_PIN5
+#define LED1_PORT   DIO_PORTD
+#define LED1_PIN    DIO_PIN3
 
 /** LED 2 CONFIGURATIONS IN PORTC , PIN7  */
-#define LED2_PORT  DIO_PORTB
-#define LED2_PIN   DIO_PIN6
+#define LED2_PORT  DIO_PORTC
+#define LED2_PIN   DIO_PIN2
 
 /** LED 3 CONFIGURATIONS IN PORTD , PIN3  */
 #define LED3_PORT  DIO_PORTC

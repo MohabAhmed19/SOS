@@ -3,40 +3,40 @@ SOS.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000640  00000000  00000000  00000074  2**1
+  0 .text         0000064c  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  000006b4  2**0
+  1 .data         00000000  00800060  00800060  000006c0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000027  00800060  00800060  000006b4  2**0
+  2 .bss          00000027  00800060  00800060  000006c0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000006b4  2**0
+  3 .comment      00000030  00000000  00000000  000006c0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006e4  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006f0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000001f0  00000000  00000000  00000720  2**0
+  5 .debug_aranges 000001f0  00000000  00000000  0000072c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000162c  00000000  00000000  00000910  2**0
+  6 .debug_info   0000162c  00000000  00000000  0000091c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000b20  00000000  00000000  00001f3c  2**0
+  7 .debug_abbrev 00000b20  00000000  00000000  00001f48  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000e22  00000000  00000000  00002a5c  2**0
+  8 .debug_line   00000e22  00000000  00000000  00002a68  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000003b4  00000000  00000000  00003880  2**2
+  9 .debug_frame  000003b4  00000000  00000000  0000388c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000009b0  00000000  00000000  00003c34  2**0
+ 10 .debug_str    0000097c  00000000  00000000  00003c40  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000b0c  00000000  00000000  000045e4  2**0
+ 11 .debug_loc    00000b0c  00000000  00000000  000045bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000170  00000000  00000000  000050f0  2**0
+ 12 .debug_ranges 00000170  00000000  00000000  000050c8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   4:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__vector_1>
    8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   c:	0c 94 d0 01 	jmp	0x3a0	; 0x3a0 <__vector_3>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -44,7 +44,7 @@ Disassembly of section .text:
   20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  2c:	0c 94 29 02 	jmp	0x452	; 0x452 <__vector_11>
+  2c:	0c 94 2f 02 	jmp	0x45e	; 0x45e <__vector_11>
   30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -77,7 +77,7 @@ Disassembly of section .text:
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
   70:	0e 94 ca 00 	call	0x194	; 0x194 <main>
-  74:	0c 94 1e 03 	jmp	0x63c	; 0x63c <_exit>
+  74:	0c 94 24 03 	jmp	0x648	; 0x648 <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -89,8 +89,8 @@ uint8_t button2_status  ; /** GLOBAL VARIABLE FOR BUTTON 2 **/
 void LED1_task()
 {
 	LED_TOGGLE(LED1_PORT , LED1_PIN);
-  7c:	65 e0       	ldi	r22, 0x05	; 5
-  7e:	81 e0       	ldi	r24, 0x01	; 1
+  7c:	63 e0       	ldi	r22, 0x03	; 3
+  7e:	83 e0       	ldi	r24, 0x03	; 3
   80:	0e 94 c7 00 	call	0x18e	; 0x18e <LED_TOGGLE>
   84:	08 95       	ret
 
@@ -101,8 +101,8 @@ void LED1_task()
 void LED2_task()
 {
 	LED_TOGGLE(LED2_PORT , LED2_PIN);
-  86:	66 e0       	ldi	r22, 0x06	; 6
-  88:	81 e0       	ldi	r24, 0x01	; 1
+  86:	62 e0       	ldi	r22, 0x02	; 2
+  88:	82 e0       	ldi	r24, 0x02	; 2
   8a:	0e 94 c7 00 	call	0x18e	; 0x18e <LED_TOGGLE>
   8e:	08 95       	ret
 
@@ -113,10 +113,10 @@ void start_button()
 {
 	
 	sos_init();
-  90:	0e 94 14 03 	call	0x628	; 0x628 <sos_init>
+  90:	0e 94 1a 03 	call	0x634	; 0x634 <sos_init>
 	
 	sos_run();  /** RESTART OS AGAIN **/	
-  94:	0e 94 11 03 	call	0x622	; 0x622 <sos_run>
+  94:	0e 94 17 03 	call	0x62e	; 0x62e <sos_run>
   98:	08 95       	ret
 
 0000009a <APP_init>:
@@ -125,26 +125,26 @@ void start_button()
 /** INITIALIZATION TASK **/
 void APP_init()
 {
-	INT2_INIT();  /** INITIALIZE EXTERNAL INTERRUPT 0 **/
-  9a:	0e 94 c9 01 	call	0x392	; 0x392 <INT2_INIT>
+	INT0_INIT();  /** INITIALIZE EXTERNAL INTERRUPT 0 **/
+  9a:	0e 94 c4 01 	call	0x388	; 0x388 <INT0_INIT>
 	
 	LED_INIT(LED1_PORT , LED1_PIN); /** LED 1 INITILIZATION **/
-  9e:	65 e0       	ldi	r22, 0x05	; 5
-  a0:	81 e0       	ldi	r24, 0x01	; 1
+  9e:	63 e0       	ldi	r22, 0x03	; 3
+  a0:	83 e0       	ldi	r24, 0x03	; 3
   a2:	0e 94 c3 00 	call	0x186	; 0x186 <LED_INIT>
 
 	LED_INIT(LED2_PORT , LED2_PIN); /** LED 2 INITIALIZATION **/
-  a6:	66 e0       	ldi	r22, 0x06	; 6
-  a8:	81 e0       	ldi	r24, 0x01	; 1
+  a6:	62 e0       	ldi	r22, 0x02	; 2
+  a8:	82 e0       	ldi	r24, 0x02	; 2
   aa:	0e 94 c3 00 	call	0x186	; 0x186 <LED_INIT>
 	
 	Button_init(); /** BUTTON INITIALIZATION **/
   ae:	0e 94 99 00 	call	0x132	; 0x132 <Button_init>
 	
-	EXTINT2_setcallback(start_button); /** CALLBACK FUNCTION OF EXTINT0 **/
+	EXTINT0_setcallback(start_button); /** CALLBACK FUNCTION OF EXTINT0 **/
   b2:	88 e4       	ldi	r24, 0x48	; 72
   b4:	90 e0       	ldi	r25, 0x00	; 0
-  b6:	0e 94 c4 01 	call	0x388	; 0x388 <EXTINT2_setcallback>
+  b6:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <EXTINT0_setcallback>
   ba:	08 95       	ret
 
 000000bc <Stop_button_task>:
@@ -157,7 +157,7 @@ void Stop_button_task()
   bc:	42 e8       	ldi	r20, 0x82	; 130
   be:	50 e0       	ldi	r21, 0x00	; 0
   c0:	64 e0       	ldi	r22, 0x04	; 4
-  c2:	82 e0       	ldi	r24, 0x02	; 2
+  c2:	81 e0       	ldi	r24, 0x01	; 1
   c4:	0e 94 a4 00 	call	0x148	; 0x148 <Is_pressed>
 	
 	if (button2_status == 1) /** BECOMES TRUE WHEN BUTTON 2 PRESSED **/
@@ -166,7 +166,7 @@ void Stop_button_task()
   ce:	21 f4       	brne	.+8      	; 0xd8 <Stop_button_task+0x1c>
 	{
 		sos_disable(); /** DISABLE SOS **/
-  d0:	0e 94 1b 03 	call	0x636	; 0x636 <sos_disable>
+  d0:	0e 94 21 03 	call	0x642	; 0x642 <sos_disable>
 		
 		button2_status = 0 ; /** REINITIALIZE BUTTON STATUS **/
   d4:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <button2_status>
@@ -185,7 +185,7 @@ void APP_start()
   e0:	60 e0       	ldi	r22, 0x00	; 0
   e2:	70 e0       	ldi	r23, 0x00	; 0
   e4:	80 e0       	ldi	r24, 0x00	; 0
-  e6:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <sos_create_task>
+  e6:	0e 94 60 02 	call	0x4c0	; 0x4c0 <sos_create_task>
 	
 	if ( enu_l_func_return_status == SOS_STATUS_SUCCESS )
   ea:	81 30       	cpi	r24, 0x01	; 1
@@ -197,7 +197,7 @@ void APP_start()
   f2:	50 e0       	ldi	r21, 0x00	; 0
   f4:	61 e0       	ldi	r22, 0x01	; 1
   f6:	70 e0       	ldi	r23, 0x00	; 0
-  f8:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <sos_create_task>
+  f8:	0e 94 60 02 	call	0x4c0	; 0x4c0 <sos_create_task>
 		
 		if ( enu_l_func_return_status == SOS_STATUS_SUCCESS )
   fc:	81 30       	cpi	r24, 0x01	; 1
@@ -210,7 +210,7 @@ void APP_start()
  106:	6c e2       	ldi	r22, 0x2C	; 44
  108:	71 e0       	ldi	r23, 0x01	; 1
  10a:	82 e0       	ldi	r24, 0x02	; 2
- 10c:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <sos_create_task>
+ 10c:	0e 94 60 02 	call	0x4c0	; 0x4c0 <sos_create_task>
 			
 			if ( enu_l_func_return_status == SOS_STATUS_SUCCESS )
  110:	81 30       	cpi	r24, 0x01	; 1
@@ -223,17 +223,17 @@ void APP_start()
  11a:	64 ef       	ldi	r22, 0xF4	; 244
  11c:	71 e0       	ldi	r23, 0x01	; 1
  11e:	83 e0       	ldi	r24, 0x03	; 3
- 120:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <sos_create_task>
+ 120:	0e 94 60 02 	call	0x4c0	; 0x4c0 <sos_create_task>
 				
 				if ( enu_l_func_return_status == SOS_STATUS_SUCCESS )
  124:	81 30       	cpi	r24, 0x01	; 1
  126:	21 f4       	brne	.+8      	; 0x130 <APP_start+0x56>
 				{
 					sos_init(); /** PREPARE OS TO START **/
- 128:	0e 94 14 03 	call	0x628	; 0x628 <sos_init>
+ 128:	0e 94 1a 03 	call	0x634	; 0x634 <sos_init>
 					
 					sos_run(); /** START SCHEDULING **/
- 12c:	0e 94 11 03 	call	0x622	; 0x622 <sos_run>
+ 12c:	0e 94 17 03 	call	0x62e	; 0x62e <sos_run>
  130:	08 95       	ret
 
 00000132 <Button_init>:
@@ -245,13 +245,13 @@ void Button_init(void)
 	DIO_setpindir(BUTTON1_PORT , BUTTON1_PIN , DIO_PIN_INPUT);
  132:	40 e0       	ldi	r20, 0x00	; 0
  134:	62 e0       	ldi	r22, 0x02	; 2
- 136:	81 e0       	ldi	r24, 0x01	; 1
+ 136:	83 e0       	ldi	r24, 0x03	; 3
  138:	0e 94 cd 00 	call	0x19a	; 0x19a <DIO_setpindir>
 	
 	DIO_setpindir(BUTTON2_PORT , BUTTON2_PIN , DIO_PIN_INPUT);
  13c:	40 e0       	ldi	r20, 0x00	; 0
  13e:	64 e0       	ldi	r22, 0x04	; 4
- 140:	82 e0       	ldi	r24, 0x02	; 2
+ 140:	81 e0       	ldi	r24, 0x01	; 1
  142:	0e 94 cd 00 	call	0x19a	; 0x19a <DIO_setpindir>
  146:	08 95       	ret
 
@@ -350,10 +350,22 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  192:	08 95       	ret
 
 00000194 <main>:
+
+
+int main(void)
+{
+	/** START TASKS EXECUTION **/
+	APP_start();
  194:	0e 94 6d 00 	call	0xda	; 0xda <APP_start>
  198:	ff cf       	rjmp	.-2      	; 0x198 <main+0x4>
 
 0000019a <DIO_setpindir>:
+		en_a_valstate = NOT_VALID_VALUE ;  /** RETURN VALUE AS NOT VALID **/
+		break ;
+	} 
+	
+	return en_a_valstate ; /** RETURN THE FINAL STATE OF THE FUNCTION */
+}
  19a:	44 23       	and	r20, r20
  19c:	19 f0       	breq	.+6      	; 0x1a4 <DIO_setpindir+0xa>
  19e:	41 30       	cpi	r20, 0x01	; 1
@@ -483,6 +495,12 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  296:	08 95       	ret
 
 00000298 <DIO_readpin>:
+/******************************************************************/
+PinRead_t DIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_val)
+{
+	PinRead_t en_a_Pinstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
+	
+	switch(u8_a_portid)  /** SWITCH CASE ON PORT ID **/
  298:	81 30       	cpi	r24, 0x01	; 1
  29a:	99 f0       	breq	.+38     	; 0x2c2 <DIO_readpin+0x2a>
  29c:	28 f0       	brcs	.+10     	; 0x2a8 <DIO_readpin+0x10>
@@ -491,6 +509,9 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  2a2:	83 30       	cpi	r24, 0x03	; 3
  2a4:	41 f1       	breq	.+80     	; 0x2f6 <DIO_readpin+0x5e>
  2a6:	34 c0       	rjmp	.+104    	; 0x310 <DIO_readpin+0x78>
+	{
+		case DIO_PORTA:               /** PORTA  **/
+		*u8_a_val = get_bit(PINA , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
  2a8:	89 b3       	in	r24, 0x19	; 25
  2aa:	90 e0       	ldi	r25, 0x00	; 0
  2ac:	02 c0       	rjmp	.+4      	; 0x2b2 <DIO_readpin+0x1a>
@@ -502,8 +523,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  2b8:	89 bb       	out	0x19, r24	; 25
  2ba:	fa 01       	movw	r30, r20
  2bc:	80 83       	st	Z, r24
+/* INPUT   : u8_a_portid , PINID , POINTER TO SET THE VALUE IN IT      */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_val)
+{
+	PinRead_t en_a_Pinstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  2be:	80 e0       	ldi	r24, 0x00	; 0
+	
+	switch(u8_a_portid)  /** SWITCH CASE ON PORT ID **/
+	{
+		case DIO_PORTA:               /** PORTA  **/
+		*u8_a_val = get_bit(PINA , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
  2c0:	08 95       	ret
+		
+		case DIO_PORTB:               /** PORTB  **/
+		*u8_a_val = get_bit(PINB , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
  2c2:	86 b3       	in	r24, 0x16	; 22
  2c4:	90 e0       	ldi	r25, 0x00	; 0
  2c6:	02 c0       	rjmp	.+4      	; 0x2cc <DIO_readpin+0x34>
@@ -515,8 +551,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  2d2:	86 bb       	out	0x16, r24	; 22
  2d4:	fa 01       	movw	r30, r20
  2d6:	80 83       	st	Z, r24
+/* INPUT   : u8_a_portid , PINID , POINTER TO SET THE VALUE IN IT      */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_val)
+{
+	PinRead_t en_a_Pinstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  2d8:	80 e0       	ldi	r24, 0x00	; 0
+		*u8_a_val = get_bit(PINA , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
+		
+		case DIO_PORTB:               /** PORTB  **/
+		*u8_a_val = get_bit(PINB , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
  2da:	08 95       	ret
+		
+		case DIO_PORTC:               /** PORTC  **/
+		*u8_a_val = get_bit(PINC , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
  2dc:	83 b3       	in	r24, 0x13	; 19
  2de:	90 e0       	ldi	r25, 0x00	; 0
  2e0:	02 c0       	rjmp	.+4      	; 0x2e6 <DIO_readpin+0x4e>
@@ -528,8 +579,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  2ec:	83 bb       	out	0x13, r24	; 19
  2ee:	fa 01       	movw	r30, r20
  2f0:	80 83       	st	Z, r24
+/* INPUT   : u8_a_portid , PINID , POINTER TO SET THE VALUE IN IT      */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_val)
+{
+	PinRead_t en_a_Pinstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  2f2:	80 e0       	ldi	r24, 0x00	; 0
+		*u8_a_val = get_bit(PINB , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
+		
+		case DIO_PORTC:               /** PORTC  **/
+		*u8_a_val = get_bit(PINC , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
  2f4:	08 95       	ret
+		
+		case DIO_PORTD:               /** PORTD  **/
+		*u8_a_val = get_bit(PIND , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
  2f6:	80 b3       	in	r24, 0x10	; 16
  2f8:	90 e0       	ldi	r25, 0x00	; 0
  2fa:	02 c0       	rjmp	.+4      	; 0x300 <DIO_readpin+0x68>
@@ -541,12 +607,38 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  306:	80 bb       	out	0x10, r24	; 16
  308:	fa 01       	movw	r30, r20
  30a:	80 83       	st	Z, r24
+/* INPUT   : u8_a_portid , PINID , POINTER TO SET THE VALUE IN IT      */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_val)
+{
+	PinRead_t en_a_Pinstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  30c:	80 e0       	ldi	r24, 0x00	; 0
+		*u8_a_val = get_bit(PINC , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
+		
+		case DIO_PORTD:               /** PORTD  **/
+		*u8_a_val = get_bit(PIND , u8_a_pinid); /** GET THE VALUE OF THE BIT **/
+		break;
  30e:	08 95       	ret
+		
+		default:
+		en_a_Pinstate = NOT_VALID_READ ;  /** READ IS NOT VALID  **/
  310:	81 e0       	ldi	r24, 0x01	; 1
+		break;
+	} 
+	
+	return en_a_Pinstate ; /** RETURN THE FINAL STATE OF THE FUNCTION **/	
+}
  312:	08 95       	ret
 
 00000314 <DIO_togglepin>:
+/******************************************************************/
+PinRead_t DIO_togglepin(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	PinRead_t en_a_Pinreadstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
+	
+	switch(u8_a_portid) /** SWITCH ON THE PORT ID **/
  314:	81 30       	cpi	r24, 0x01	; 1
  316:	91 f0       	breq	.+36     	; 0x33c <DIO_togglepin+0x28>
  318:	28 f0       	brcs	.+10     	; 0x324 <DIO_togglepin+0x10>
@@ -555,6 +647,9 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  31e:	83 30       	cpi	r24, 0x03	; 3
  320:	29 f1       	breq	.+74     	; 0x36c <DIO_togglepin+0x58>
  322:	30 c0       	rjmp	.+96     	; 0x384 <DIO_togglepin+0x70>
+	{
+		case DIO_PORTA:
+		toggle_bit(PORTA , u8_a_pinid);
  324:	2b b3       	in	r18, 0x1b	; 27
  326:	81 e0       	ldi	r24, 0x01	; 1
  328:	90 e0       	ldi	r25, 0x00	; 0
@@ -565,8 +660,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  332:	e2 f7       	brpl	.-8      	; 0x32c <DIO_togglepin+0x18>
  334:	82 27       	eor	r24, r18
  336:	8b bb       	out	0x1b, r24	; 27
+/* INPUT   : u8_a_portid , PINID                                  */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_togglepin(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	PinRead_t en_a_Pinreadstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  338:	80 e0       	ldi	r24, 0x00	; 0
+	
+	switch(u8_a_portid) /** SWITCH ON THE PORT ID **/
+	{
+		case DIO_PORTA:
+		toggle_bit(PORTA , u8_a_pinid);
+		break;
  33a:	08 95       	ret
+		
+		case DIO_PORTB:
+		toggle_bit(PORTB , u8_a_pinid);
  33c:	28 b3       	in	r18, 0x18	; 24
  33e:	81 e0       	ldi	r24, 0x01	; 1
  340:	90 e0       	ldi	r25, 0x00	; 0
@@ -577,8 +687,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  34a:	e2 f7       	brpl	.-8      	; 0x344 <DIO_togglepin+0x30>
  34c:	82 27       	eor	r24, r18
  34e:	88 bb       	out	0x18, r24	; 24
+/* INPUT   : u8_a_portid , PINID                                  */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_togglepin(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	PinRead_t en_a_Pinreadstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  350:	80 e0       	ldi	r24, 0x00	; 0
+		toggle_bit(PORTA , u8_a_pinid);
+		break;
+		
+		case DIO_PORTB:
+		toggle_bit(PORTB , u8_a_pinid);
+		break;
  352:	08 95       	ret
+		
+		case DIO_PORTC:
+		toggle_bit(PORTC , u8_a_pinid);
  354:	25 b3       	in	r18, 0x15	; 21
  356:	81 e0       	ldi	r24, 0x01	; 1
  358:	90 e0       	ldi	r25, 0x00	; 0
@@ -589,8 +714,23 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  362:	e2 f7       	brpl	.-8      	; 0x35c <DIO_togglepin+0x48>
  364:	82 27       	eor	r24, r18
  366:	85 bb       	out	0x15, r24	; 21
+/* INPUT   : u8_a_portid , PINID                                  */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_togglepin(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	PinRead_t en_a_Pinreadstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  368:	80 e0       	ldi	r24, 0x00	; 0
+		toggle_bit(PORTB , u8_a_pinid);
+		break;
+		
+		case DIO_PORTC:
+		toggle_bit(PORTC , u8_a_pinid);
+		break;
  36a:	08 95       	ret
+		
+		case DIO_PORTD:
+		toggle_bit(PORTD , u8_a_pinid);
  36c:	22 b3       	in	r18, 0x12	; 18
  36e:	81 e0       	ldi	r24, 0x01	; 1
  370:	90 e0       	ldi	r25, 0x00	; 0
@@ -601,396 +741,495 @@ void LED_TOGGLE(uint8_t led_port , uint8_t ledpin)
  37a:	e2 f7       	brpl	.-8      	; 0x374 <DIO_togglepin+0x60>
  37c:	82 27       	eor	r24, r18
  37e:	82 bb       	out	0x12, r24	; 18
+/* INPUT   : u8_a_portid , PINID                                  */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+PinRead_t DIO_togglepin(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	PinRead_t en_a_Pinreadstate = VALID_READ ;  /** VARIABLE TO HOLD THE FUNCTION ERROR STATE */
  380:	80 e0       	ldi	r24, 0x00	; 0
+		toggle_bit(PORTC , u8_a_pinid);
+		break;
+		
+		case DIO_PORTD:
+		toggle_bit(PORTD , u8_a_pinid);
+		break;
  382:	08 95       	ret
+		
+		default:
+		/** DO NOTHING **/
+		en_a_Pinreadstate = NOT_VALID_READ ; /** RETURN AN ERROR **/
  384:	81 e0       	ldi	r24, 0x01	; 1
+		break;
+	} 
+	
+	return en_a_Pinreadstate ; /** RETURN THE FINAL STATE OF THE FUNCTION **/
+}
  386:	08 95       	ret
 
-00000388 <EXTINT2_setcallback>:
-	  clear_bit(MCUCR , 3);
-	  
-	#endif
-
-     /* Enable INT1 */
-	set_bit(GICR , 7);
- 388:	90 93 84 00 	sts	0x0084, r25	; 0x800084 <ptr_func_exint2_callback+0x1>
- 38c:	80 93 83 00 	sts	0x0083, r24	; 0x800083 <ptr_func_exint2_callback>
- 390:	08 95       	ret
-
-00000392 <INT2_INIT>:
-void INT2_INIT(void)
-{
-	SET_GLOBALINTERRUPT(); /** ENABLE GLOBAL INTERRUPTS **/
-	
-	/* Enable INT2 */
-	set_bit(GICR , 5);
- 392:	8b b7       	in	r24, 0x3b	; 59
- 394:	80 62       	ori	r24, 0x20	; 32
- 396:	8b bf       	out	0x3b, r24	; 59
+00000388 <INT0_INIT>:
 	  
 	  clear_bit(MCUCSR , 6);
 	  
 	#elif EXTERNAL_INT2_TRIGGER == INT_TRIGGER_RISING_EDGE
 	  
 	  set_bit(MCUCSR , 6);
- 398:	84 b7       	in	r24, 0x34	; 52
- 39a:	80 64       	ori	r24, 0x40	; 64
- 39c:	84 bf       	out	0x34, r24	; 52
- 39e:	08 95       	ret
+ 388:	8f b7       	in	r24, 0x3f	; 63
+ 38a:	80 68       	ori	r24, 0x80	; 128
+ 38c:	8f bf       	out	0x3f, r24	; 63
+ 38e:	85 b7       	in	r24, 0x35	; 53
+ 390:	81 60       	ori	r24, 0x01	; 1
+ 392:	85 bf       	out	0x35, r24	; 53
+ 394:	85 b7       	in	r24, 0x35	; 53
+ 396:	82 60       	ori	r24, 0x02	; 2
+ 398:	85 bf       	out	0x35, r24	; 53
+ 39a:	8b b7       	in	r24, 0x3b	; 59
+ 39c:	80 64       	ori	r24, 0x40	; 64
+ 39e:	8b bf       	out	0x3b, r24	; 59
+ 3a0:	08 95       	ret
 
-000003a0 <__vector_3>:
+000003a2 <EXTINT0_setcallback>:
+ 3a2:	90 93 84 00 	sts	0x0084, r25	; 0x800084 <ptr_func_exint0_callback+0x1>
+ 3a6:	80 93 83 00 	sts	0x0083, r24	; 0x800083 <ptr_func_exint0_callback>
+ 3aa:	08 95       	ret
+
+000003ac <__vector_1>:
 	#endif
 }
 
 /** EXTERNAL INTERRUPT 0 ISR **/
-ISR(INT2_vect)
+ISR(INT0_vect)
 {
- 3a0:	1f 92       	push	r1
- 3a2:	0f 92       	push	r0
- 3a4:	0f b6       	in	r0, 0x3f	; 63
- 3a6:	0f 92       	push	r0
- 3a8:	11 24       	eor	r1, r1
- 3aa:	2f 93       	push	r18
- 3ac:	3f 93       	push	r19
- 3ae:	4f 93       	push	r20
- 3b0:	5f 93       	push	r21
- 3b2:	6f 93       	push	r22
- 3b4:	7f 93       	push	r23
- 3b6:	8f 93       	push	r24
- 3b8:	9f 93       	push	r25
- 3ba:	af 93       	push	r26
- 3bc:	bf 93       	push	r27
- 3be:	ef 93       	push	r30
- 3c0:	ff 93       	push	r31
-	ptr_func_exint2_callback(); 
- 3c2:	e0 91 83 00 	lds	r30, 0x0083	; 0x800083 <ptr_func_exint2_callback>
- 3c6:	f0 91 84 00 	lds	r31, 0x0084	; 0x800084 <ptr_func_exint2_callback+0x1>
- 3ca:	09 95       	icall
- 3cc:	ff 91       	pop	r31
- 3ce:	ef 91       	pop	r30
- 3d0:	bf 91       	pop	r27
- 3d2:	af 91       	pop	r26
- 3d4:	9f 91       	pop	r25
- 3d6:	8f 91       	pop	r24
- 3d8:	7f 91       	pop	r23
- 3da:	6f 91       	pop	r22
- 3dc:	5f 91       	pop	r21
- 3de:	4f 91       	pop	r20
- 3e0:	3f 91       	pop	r19
- 3e2:	2f 91       	pop	r18
- 3e4:	0f 90       	pop	r0
- 3e6:	0f be       	out	0x3f, r0	; 63
- 3e8:	0f 90       	pop	r0
- 3ea:	1f 90       	pop	r1
- 3ec:	18 95       	reti
+ 3ac:	1f 92       	push	r1
+ 3ae:	0f 92       	push	r0
+ 3b0:	0f b6       	in	r0, 0x3f	; 63
+ 3b2:	0f 92       	push	r0
+ 3b4:	11 24       	eor	r1, r1
+ 3b6:	2f 93       	push	r18
+ 3b8:	3f 93       	push	r19
+ 3ba:	4f 93       	push	r20
+ 3bc:	5f 93       	push	r21
+ 3be:	6f 93       	push	r22
+ 3c0:	7f 93       	push	r23
+ 3c2:	8f 93       	push	r24
+ 3c4:	9f 93       	push	r25
+ 3c6:	af 93       	push	r26
+ 3c8:	bf 93       	push	r27
+ 3ca:	ef 93       	push	r30
+ 3cc:	ff 93       	push	r31
+	ptr_func_exint0_callback(); 
+ 3ce:	e0 91 83 00 	lds	r30, 0x0083	; 0x800083 <ptr_func_exint0_callback>
+ 3d2:	f0 91 84 00 	lds	r31, 0x0084	; 0x800084 <ptr_func_exint0_callback+0x1>
+ 3d6:	09 95       	icall
+ 3d8:	ff 91       	pop	r31
+ 3da:	ef 91       	pop	r30
+ 3dc:	bf 91       	pop	r27
+ 3de:	af 91       	pop	r26
+ 3e0:	9f 91       	pop	r25
+ 3e2:	8f 91       	pop	r24
+ 3e4:	7f 91       	pop	r23
+ 3e6:	6f 91       	pop	r22
+ 3e8:	5f 91       	pop	r21
+ 3ea:	4f 91       	pop	r20
+ 3ec:	3f 91       	pop	r19
+ 3ee:	2f 91       	pop	r18
+ 3f0:	0f 90       	pop	r0
+ 3f2:	0f be       	out	0x3f, r0	; 63
+ 3f4:	0f 90       	pop	r0
+ 3f6:	1f 90       	pop	r1
+ 3f8:	18 95       	reti
 
-000003ee <TMR0_init>:
- 3ee:	83 b7       	in	r24, 0x33	; 51
- 3f0:	8f 77       	andi	r24, 0x7F	; 127
- 3f2:	83 bf       	out	0x33, r24	; 51
- 3f4:	83 b7       	in	r24, 0x33	; 51
- 3f6:	8f 7b       	andi	r24, 0xBF	; 191
- 3f8:	83 bf       	out	0x33, r24	; 51
+000003fa <TMR0_init>:
+	 /* TIMER MODE OF TMR0 */
+	#elif TIMER0_CLK_SRC == INTERNAL_CLK_SRC
+	
+	 #if TIMER0_MODE == TMR0_NORMAL_MODE
+	 
+	 clear_bit(TCCR0 , 7);
  3fa:	83 b7       	in	r24, 0x33	; 51
- 3fc:	87 7f       	andi	r24, 0xF7	; 247
+ 3fc:	8f 77       	andi	r24, 0x7F	; 127
  3fe:	83 bf       	out	0x33, r24	; 51
+	 clear_bit(TCCR0 , 6);
  400:	83 b7       	in	r24, 0x33	; 51
- 402:	8f 7e       	andi	r24, 0xEF	; 239
+ 402:	8f 7b       	andi	r24, 0xBF	; 191
  404:	83 bf       	out	0x33, r24	; 51
+	 clear_bit(TCCR0 , 3);
  406:	83 b7       	in	r24, 0x33	; 51
- 408:	8f 7d       	andi	r24, 0xDF	; 223
+ 408:	87 7f       	andi	r24, 0xF7	; 247
  40a:	83 bf       	out	0x33, r24	; 51
- 40c:	8f b7       	in	r24, 0x3f	; 63
- 40e:	80 68       	ori	r24, 0x80	; 128
- 410:	8f bf       	out	0x3f, r24	; 63
- 412:	89 b7       	in	r24, 0x39	; 57
- 414:	81 60       	ori	r24, 0x01	; 1
- 416:	89 bf       	out	0x39, r24	; 57
- 418:	80 e0       	ldi	r24, 0x00	; 0
- 41a:	08 95       	ret
+	 clear_bit(TCCR0 , 4);
+ 40c:	83 b7       	in	r24, 0x33	; 51
+ 40e:	8f 7e       	andi	r24, 0xEF	; 239
+ 410:	83 bf       	out	0x33, r24	; 51
+	 clear_bit(TCCR0 , 5);
+ 412:	83 b7       	in	r24, 0x33	; 51
+ 414:	8f 7d       	andi	r24, 0xDF	; 223
+ 416:	83 bf       	out	0x33, r24	; 51
+	 
+	 en_a_initstatus = VALID_INIT ; /** INITIALIZATION STATUS IS TRUE **/
+	 
+ 	 /* ENABLE INTERRUPT */
+ 	 set_bit(SREG , 7);
+ 418:	8f b7       	in	r24, 0x3f	; 63
+ 41a:	80 68       	ori	r24, 0x80	; 128
+ 41c:	8f bf       	out	0x3f, r24	; 63
+ 	 set_bit(TIMSK , 0);
+ 41e:	89 b7       	in	r24, 0x39	; 57
+ 420:	81 60       	ori	r24, 0x01	; 1
+ 422:	89 bf       	out	0x39, r24	; 57
+	  #endif
+	 #endif
+	#endif
+	
+	return en_a_initstatus ; /** RETURN THE STATUS OF INITIALIZATION **/
+}
+ 424:	80 e0       	ldi	r24, 0x00	; 0
+ 426:	08 95       	ret
 
-0000041c <TMR0_start>:
- 41c:	83 b7       	in	r24, 0x33	; 51
- 41e:	81 60       	ori	r24, 0x01	; 1
- 420:	83 bf       	out	0x33, r24	; 51
- 422:	83 b7       	in	r24, 0x33	; 51
- 424:	8d 7f       	andi	r24, 0xFD	; 253
- 426:	83 bf       	out	0x33, r24	; 51
+00000428 <TMR0_start>:
+	
+	en_a_startstatus = VALID_START ; /** START DONE PROBERLY **/
+	
+	#elif TIMER0_PRESCALER_VAL == NO_PRESCALER
+	
+	set_bit(TCCR0 , 0);
  428:	83 b7       	in	r24, 0x33	; 51
- 42a:	8b 7f       	andi	r24, 0xFB	; 251
+ 42a:	81 60       	ori	r24, 0x01	; 1
  42c:	83 bf       	out	0x33, r24	; 51
- 42e:	80 e0       	ldi	r24, 0x00	; 0
- 430:	08 95       	ret
+	clear_bit(TCCR0 , 1);
+ 42e:	83 b7       	in	r24, 0x33	; 51
+ 430:	8d 7f       	andi	r24, 0xFD	; 253
+ 432:	83 bf       	out	0x33, r24	; 51
+	clear_bit(TCCR0 , 2);
+ 434:	83 b7       	in	r24, 0x33	; 51
+ 436:	8b 7f       	andi	r24, 0xFB	; 251
+ 438:	83 bf       	out	0x33, r24	; 51
+	en_a_startstatus = VALID_START ; /** START DONE PROBERLY **/
+	
+	#endif
+	
+	return en_a_startstatus ; /** RETURN THE STATUS **/
+}
+ 43a:	80 e0       	ldi	r24, 0x00	; 0
+ 43c:	08 95       	ret
 
-00000432 <TMR0_stop>:
- 432:	83 b7       	in	r24, 0x33	; 51
- 434:	8e 7f       	andi	r24, 0xFE	; 254
- 436:	83 bf       	out	0x33, r24	; 51
- 438:	83 b7       	in	r24, 0x33	; 51
- 43a:	8d 7f       	andi	r24, 0xFD	; 253
- 43c:	83 bf       	out	0x33, r24	; 51
+0000043e <TMR0_stop>:
+TMR0_stop_error TMR0_stop(void)
+{
+	TMR0_stop_error en_a_stopStatus = VALID_STOP ; /** VARIABLE TO RETURN THE STATUS **/
+	
+	/** SET CONFIGURATIONS AS NO CLOCK SOURCE **/
+	clear_bit(TCCR0 , 0);
  43e:	83 b7       	in	r24, 0x33	; 51
- 440:	8b 7f       	andi	r24, 0xFB	; 251
+ 440:	8e 7f       	andi	r24, 0xFE	; 254
  442:	83 bf       	out	0x33, r24	; 51
- 444:	80 e0       	ldi	r24, 0x00	; 0
- 446:	08 95       	ret
+	clear_bit(TCCR0 , 1);
+ 444:	83 b7       	in	r24, 0x33	; 51
+ 446:	8d 7f       	andi	r24, 0xFD	; 253
+ 448:	83 bf       	out	0x33, r24	; 51
+	clear_bit(TCCR0 , 2);
+ 44a:	83 b7       	in	r24, 0x33	; 51
+ 44c:	8b 7f       	andi	r24, 0xFB	; 251
+ 44e:	83 bf       	out	0x33, r24	; 51
+	
+	en_a_stopStatus = VALID_STOP ; /** STOP DONE PROPERLY **/
+	
+	return en_a_stopStatus ; /** RETURN THE STATUS **/
+	
+}
+ 450:	80 e0       	ldi	r24, 0x00	; 0
+ 452:	08 95       	ret
 
-00000448 <TMR0_setcallback>:
- 448:	90 93 86 00 	sts	0x0086, r25	; 0x800086 <ptr_func_tmr0_callback+0x1>
- 44c:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <ptr_func_tmr0_callback>
- 450:	08 95       	ret
+00000454 <TMR0_setcallback>:
+/** ARGUMENTS  : void (*ptr)(void) (PINTER TO CALL BACK FUNCTION)      **/
+/** RETURNS    : VOID                                                  **/
+/************************************************************************/
+void TMR0_setcallback( void (*ptr_func)(void) )
+{
+	ptr_func_tmr0_callback = ptr_func; /** TIMER0 GLOBAL POINTER POINTS TO THE PASSED FUNCTION **/
+ 454:	90 93 86 00 	sts	0x0086, r25	; 0x800086 <ptr_func_tmr0_callback+0x1>
+ 458:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <ptr_func_tmr0_callback>
+ 45c:	08 95       	ret
 
-00000452 <__vector_11>:
- 452:	1f 92       	push	r1
- 454:	0f 92       	push	r0
- 456:	0f b6       	in	r0, 0x3f	; 63
- 458:	0f 92       	push	r0
- 45a:	11 24       	eor	r1, r1
- 45c:	2f 93       	push	r18
- 45e:	3f 93       	push	r19
- 460:	4f 93       	push	r20
- 462:	5f 93       	push	r21
- 464:	6f 93       	push	r22
- 466:	7f 93       	push	r23
- 468:	8f 93       	push	r24
- 46a:	9f 93       	push	r25
- 46c:	af 93       	push	r26
- 46e:	bf 93       	push	r27
- 470:	ef 93       	push	r30
- 472:	ff 93       	push	r31
- 474:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 478:	8f 5f       	subi	r24, 0xFF	; 255
- 47a:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
- 47e:	8f 31       	cpi	r24, 0x1F	; 31
- 480:	39 f4       	brne	.+14     	; 0x490 <__vector_11+0x3e>
- 482:	e0 91 85 00 	lds	r30, 0x0085	; 0x800085 <ptr_func_tmr0_callback>
- 486:	f0 91 86 00 	lds	r31, 0x0086	; 0x800086 <ptr_func_tmr0_callback+0x1>
- 48a:	09 95       	icall
- 48c:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
- 490:	12 be       	out	0x32, r1	; 50
- 492:	ff 91       	pop	r31
- 494:	ef 91       	pop	r30
- 496:	bf 91       	pop	r27
- 498:	af 91       	pop	r26
- 49a:	9f 91       	pop	r25
- 49c:	8f 91       	pop	r24
- 49e:	7f 91       	pop	r23
- 4a0:	6f 91       	pop	r22
- 4a2:	5f 91       	pop	r21
- 4a4:	4f 91       	pop	r20
- 4a6:	3f 91       	pop	r19
- 4a8:	2f 91       	pop	r18
- 4aa:	0f 90       	pop	r0
- 4ac:	0f be       	out	0x3f, r0	; 63
- 4ae:	0f 90       	pop	r0
- 4b0:	1f 90       	pop	r1
- 4b2:	18 95       	reti
+0000045e <__vector_11>:
+}
 
-000004b4 <sos_create_task>:
- 4b4:	a8 2f       	mov	r26, r24
- 4b6:	b0 e0       	ldi	r27, 0x00	; 0
- 4b8:	fd 01       	movw	r30, r26
- 4ba:	ee 0f       	add	r30, r30
- 4bc:	ff 1f       	adc	r31, r31
- 4be:	ee 0f       	add	r30, r30
- 4c0:	ff 1f       	adc	r31, r31
- 4c2:	ee 0f       	add	r30, r30
- 4c4:	ff 1f       	adc	r31, r31
- 4c6:	ef 59       	subi	r30, 0x9F	; 159
- 4c8:	ff 4f       	sbci	r31, 0xFF	; 255
- 4ca:	03 80       	ldd	r0, Z+3	; 0x03
- 4cc:	f4 81       	ldd	r31, Z+4	; 0x04
- 4ce:	e0 2d       	mov	r30, r0
- 4d0:	ef 2b       	or	r30, r31
- 4d2:	e1 f4       	brne	.+56     	; 0x50c <sos_create_task+0x58>
- 4d4:	84 30       	cpi	r24, 0x04	; 4
- 4d6:	e0 f4       	brcc	.+56     	; 0x510 <sos_create_task+0x5c>
- 4d8:	aa 0f       	add	r26, r26
- 4da:	bb 1f       	adc	r27, r27
- 4dc:	aa 0f       	add	r26, r26
- 4de:	bb 1f       	adc	r27, r27
- 4e0:	aa 0f       	add	r26, r26
- 4e2:	bb 1f       	adc	r27, r27
- 4e4:	af 59       	subi	r26, 0x9F	; 159
- 4e6:	bf 4f       	sbci	r27, 0xFF	; 255
- 4e8:	8c 93       	st	X, r24
- 4ea:	12 96       	adiw	r26, 0x02	; 2
- 4ec:	7c 93       	st	X, r23
- 4ee:	6e 93       	st	-X, r22
- 4f0:	11 97       	sbiw	r26, 0x01	; 1
- 4f2:	14 96       	adiw	r26, 0x04	; 4
- 4f4:	5c 93       	st	X, r21
- 4f6:	4e 93       	st	-X, r20
- 4f8:	13 97       	sbiw	r26, 0x03	; 3
- 4fa:	15 96       	adiw	r26, 0x05	; 5
- 4fc:	2c 93       	st	X, r18
- 4fe:	15 97       	sbiw	r26, 0x05	; 5
- 500:	17 96       	adiw	r26, 0x07	; 7
- 502:	1c 92       	st	X, r1
- 504:	1e 92       	st	-X, r1
- 506:	16 97       	sbiw	r26, 0x06	; 6
- 508:	81 e0       	ldi	r24, 0x01	; 1
- 50a:	08 95       	ret
- 50c:	80 e0       	ldi	r24, 0x00	; 0
- 50e:	08 95       	ret
- 510:	80 e0       	ldi	r24, 0x00	; 0
- 512:	08 95       	ret
+/** TIMER0 INTERRUPT SERVICE ROUTINE **/
+ISR(TIMER0_OVF_vect)
+{
+ 45e:	1f 92       	push	r1
+ 460:	0f 92       	push	r0
+ 462:	0f b6       	in	r0, 0x3f	; 63
+ 464:	0f 92       	push	r0
+ 466:	11 24       	eor	r1, r1
+ 468:	2f 93       	push	r18
+ 46a:	3f 93       	push	r19
+ 46c:	4f 93       	push	r20
+ 46e:	5f 93       	push	r21
+ 470:	6f 93       	push	r22
+ 472:	7f 93       	push	r23
+ 474:	8f 93       	push	r24
+ 476:	9f 93       	push	r25
+ 478:	af 93       	push	r26
+ 47a:	bf 93       	push	r27
+ 47c:	ef 93       	push	r30
+ 47e:	ff 93       	push	r31
+	u8_gl_timer0_ovs++ ; /** INCREASE THE NUMBER OF OVERFLOWS BY 1 **/
+ 480:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 484:	8f 5f       	subi	r24, 0xFF	; 255
+ 486:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+	
+ 	if ( u8_gl_timer0_ovs == TICK_OVER_FLOW ) /** BECOMES TRUE WHEN TIME EQUALS TO TICK TIME OVER FLOW COUNTER **/
+ 48a:	8e 33       	cpi	r24, 0x3E	; 62
+ 48c:	39 f4       	brne	.+14     	; 0x49c <__vector_11+0x3e>
+ 	{
+		ptr_func_tmr0_callback(); /** EXECUTE THE FUNCTION TO WHICH THE GLOBAL VARIABLE POINTS **/
+ 48e:	e0 91 85 00 	lds	r30, 0x0085	; 0x800085 <ptr_func_tmr0_callback>
+ 492:	f0 91 86 00 	lds	r31, 0x0086	; 0x800086 <ptr_func_tmr0_callback+0x1>
+ 496:	09 95       	icall
+		
+ 		u8_gl_timer0_ovs = 0 ; /** REINITIALIZE TIMER0 OVERFLOW COUNTER TO 0 AGAIN **/
+ 498:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 	}
+	 TCNT0 = 0 ;
+ 49c:	12 be       	out	0x32, r1	; 50
+ 49e:	ff 91       	pop	r31
+ 4a0:	ef 91       	pop	r30
+ 4a2:	bf 91       	pop	r27
+ 4a4:	af 91       	pop	r26
+ 4a6:	9f 91       	pop	r25
+ 4a8:	8f 91       	pop	r24
+ 4aa:	7f 91       	pop	r23
+ 4ac:	6f 91       	pop	r22
+ 4ae:	5f 91       	pop	r21
+ 4b0:	4f 91       	pop	r20
+ 4b2:	3f 91       	pop	r19
+ 4b4:	2f 91       	pop	r18
+ 4b6:	0f 90       	pop	r0
+ 4b8:	0f be       	out	0x3f, r0	; 63
+ 4ba:	0f 90       	pop	r0
+ 4bc:	1f 90       	pop	r1
+ 4be:	18 95       	reti
 
-00000514 <sos_delete_task>:
- 514:	90 e0       	ldi	r25, 0x00	; 0
- 516:	fc 01       	movw	r30, r24
- 518:	ee 0f       	add	r30, r30
- 51a:	ff 1f       	adc	r31, r31
- 51c:	ee 0f       	add	r30, r30
- 51e:	ff 1f       	adc	r31, r31
- 520:	ee 0f       	add	r30, r30
- 522:	ff 1f       	adc	r31, r31
- 524:	ef 59       	subi	r30, 0x9F	; 159
- 526:	ff 4f       	sbci	r31, 0xFF	; 255
- 528:	20 81       	ld	r18, Z
- 52a:	25 30       	cpi	r18, 0x05	; 5
- 52c:	d0 f4       	brcc	.+52     	; 0x562 <sos_delete_task+0x4e>
- 52e:	fc 01       	movw	r30, r24
- 530:	ee 0f       	add	r30, r30
- 532:	ff 1f       	adc	r31, r31
- 534:	ee 0f       	add	r30, r30
- 536:	ff 1f       	adc	r31, r31
- 538:	ee 0f       	add	r30, r30
- 53a:	ff 1f       	adc	r31, r31
- 53c:	ef 59       	subi	r30, 0x9F	; 159
- 53e:	ff 4f       	sbci	r31, 0xFF	; 255
- 540:	23 81       	ldd	r18, Z+3	; 0x03
- 542:	34 81       	ldd	r19, Z+4	; 0x04
- 544:	23 2b       	or	r18, r19
- 546:	79 f0       	breq	.+30     	; 0x566 <sos_delete_task+0x52>
- 548:	88 0f       	add	r24, r24
- 54a:	99 1f       	adc	r25, r25
- 54c:	88 0f       	add	r24, r24
- 54e:	99 1f       	adc	r25, r25
- 550:	88 0f       	add	r24, r24
- 552:	99 1f       	adc	r25, r25
- 554:	fc 01       	movw	r30, r24
- 556:	ef 59       	subi	r30, 0x9F	; 159
- 558:	ff 4f       	sbci	r31, 0xFF	; 255
- 55a:	14 82       	std	Z+4, r1	; 0x04
- 55c:	13 82       	std	Z+3, r1	; 0x03
- 55e:	81 e0       	ldi	r24, 0x01	; 1
- 560:	08 95       	ret
- 562:	80 e0       	ldi	r24, 0x00	; 0
- 564:	08 95       	ret
- 566:	80 e0       	ldi	r24, 0x00	; 0
- 568:	08 95       	ret
+000004c0 <sos_create_task>:
+	{
+		/** TASK HANDLER POINTS TO NULL **/
+		str_gl_tasks_data[u8_l_task_counter].ptr_func_task_handler = NULL ;
+	}
+		
+}
+ 4c0:	a8 2f       	mov	r26, r24
+ 4c2:	b0 e0       	ldi	r27, 0x00	; 0
+ 4c4:	fd 01       	movw	r30, r26
+ 4c6:	ee 0f       	add	r30, r30
+ 4c8:	ff 1f       	adc	r31, r31
+ 4ca:	ee 0f       	add	r30, r30
+ 4cc:	ff 1f       	adc	r31, r31
+ 4ce:	ee 0f       	add	r30, r30
+ 4d0:	ff 1f       	adc	r31, r31
+ 4d2:	ef 59       	subi	r30, 0x9F	; 159
+ 4d4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4d6:	03 80       	ldd	r0, Z+3	; 0x03
+ 4d8:	f4 81       	ldd	r31, Z+4	; 0x04
+ 4da:	e0 2d       	mov	r30, r0
+ 4dc:	ef 2b       	or	r30, r31
+ 4de:	e1 f4       	brne	.+56     	; 0x518 <sos_create_task+0x58>
+ 4e0:	84 30       	cpi	r24, 0x04	; 4
+ 4e2:	e0 f4       	brcc	.+56     	; 0x51c <sos_create_task+0x5c>
+ 4e4:	aa 0f       	add	r26, r26
+ 4e6:	bb 1f       	adc	r27, r27
+ 4e8:	aa 0f       	add	r26, r26
+ 4ea:	bb 1f       	adc	r27, r27
+ 4ec:	aa 0f       	add	r26, r26
+ 4ee:	bb 1f       	adc	r27, r27
+ 4f0:	af 59       	subi	r26, 0x9F	; 159
+ 4f2:	bf 4f       	sbci	r27, 0xFF	; 255
+ 4f4:	8c 93       	st	X, r24
+ 4f6:	12 96       	adiw	r26, 0x02	; 2
+ 4f8:	7c 93       	st	X, r23
+ 4fa:	6e 93       	st	-X, r22
+ 4fc:	11 97       	sbiw	r26, 0x01	; 1
+ 4fe:	14 96       	adiw	r26, 0x04	; 4
+ 500:	5c 93       	st	X, r21
+ 502:	4e 93       	st	-X, r20
+ 504:	13 97       	sbiw	r26, 0x03	; 3
+ 506:	15 96       	adiw	r26, 0x05	; 5
+ 508:	2c 93       	st	X, r18
+ 50a:	15 97       	sbiw	r26, 0x05	; 5
+ 50c:	17 96       	adiw	r26, 0x07	; 7
+ 50e:	1c 92       	st	X, r1
+ 510:	1e 92       	st	-X, r1
+ 512:	16 97       	sbiw	r26, 0x06	; 6
+ 514:	81 e0       	ldi	r24, 0x01	; 1
+ 516:	08 95       	ret
+ 518:	80 e0       	ldi	r24, 0x00	; 0
+ 51a:	08 95       	ret
+ 51c:	80 e0       	ldi	r24, 0x00	; 0
+ 51e:	08 95       	ret
 
-0000056a <sos_scheduler>:
- 56a:	cf 93       	push	r28
- 56c:	c0 e0       	ldi	r28, 0x00	; 0
- 56e:	54 c0       	rjmp	.+168    	; 0x618 <sos_scheduler+0xae>
- 570:	8c 2f       	mov	r24, r28
- 572:	90 e0       	ldi	r25, 0x00	; 0
- 574:	fc 01       	movw	r30, r24
- 576:	ee 0f       	add	r30, r30
- 578:	ff 1f       	adc	r31, r31
- 57a:	ee 0f       	add	r30, r30
- 57c:	ff 1f       	adc	r31, r31
- 57e:	ee 0f       	add	r30, r30
- 580:	ff 1f       	adc	r31, r31
- 582:	ef 59       	subi	r30, 0x9F	; 159
- 584:	ff 4f       	sbci	r31, 0xFF	; 255
- 586:	03 80       	ldd	r0, Z+3	; 0x03
- 588:	f4 81       	ldd	r31, Z+4	; 0x04
- 58a:	e0 2d       	mov	r30, r0
- 58c:	30 97       	sbiw	r30, 0x00	; 0
- 58e:	09 f4       	brne	.+2      	; 0x592 <sos_scheduler+0x28>
- 590:	42 c0       	rjmp	.+132    	; 0x616 <sos_scheduler+0xac>
- 592:	dc 01       	movw	r26, r24
- 594:	aa 0f       	add	r26, r26
- 596:	bb 1f       	adc	r27, r27
- 598:	aa 0f       	add	r26, r26
- 59a:	bb 1f       	adc	r27, r27
- 59c:	aa 0f       	add	r26, r26
- 59e:	bb 1f       	adc	r27, r27
- 5a0:	af 59       	subi	r26, 0x9F	; 159
- 5a2:	bf 4f       	sbci	r27, 0xFF	; 255
- 5a4:	16 96       	adiw	r26, 0x06	; 6
- 5a6:	2d 91       	ld	r18, X+
- 5a8:	3c 91       	ld	r19, X
- 5aa:	17 97       	sbiw	r26, 0x07	; 7
- 5ac:	21 15       	cp	r18, r1
- 5ae:	31 05       	cpc	r19, r1
- 5b0:	29 f5       	brne	.+74     	; 0x5fc <sos_scheduler+0x92>
- 5b2:	dc 01       	movw	r26, r24
- 5b4:	aa 0f       	add	r26, r26
- 5b6:	bb 1f       	adc	r27, r27
- 5b8:	aa 0f       	add	r26, r26
- 5ba:	bb 1f       	adc	r27, r27
- 5bc:	aa 0f       	add	r26, r26
- 5be:	bb 1f       	adc	r27, r27
- 5c0:	af 59       	subi	r26, 0x9F	; 159
- 5c2:	bf 4f       	sbci	r27, 0xFF	; 255
- 5c4:	15 96       	adiw	r26, 0x05	; 5
- 5c6:	2c 91       	ld	r18, X
- 5c8:	21 11       	cpse	r18, r1
- 5ca:	05 c0       	rjmp	.+10     	; 0x5d6 <sos_scheduler+0x6c>
- 5cc:	09 95       	icall
- 5ce:	8c 2f       	mov	r24, r28
- 5d0:	0e 94 8a 02 	call	0x514	; 0x514 <sos_delete_task>
- 5d4:	20 c0       	rjmp	.+64     	; 0x616 <sos_scheduler+0xac>
- 5d6:	88 0f       	add	r24, r24
- 5d8:	99 1f       	adc	r25, r25
- 5da:	88 0f       	add	r24, r24
- 5dc:	99 1f       	adc	r25, r25
- 5de:	88 0f       	add	r24, r24
- 5e0:	99 1f       	adc	r25, r25
- 5e2:	fc 01       	movw	r30, r24
- 5e4:	ef 59       	subi	r30, 0x9F	; 159
- 5e6:	ff 4f       	sbci	r31, 0xFF	; 255
- 5e8:	81 81       	ldd	r24, Z+1	; 0x01
- 5ea:	92 81       	ldd	r25, Z+2	; 0x02
- 5ec:	01 97       	sbiw	r24, 0x01	; 1
- 5ee:	97 83       	std	Z+7, r25	; 0x07
- 5f0:	86 83       	std	Z+6, r24	; 0x06
- 5f2:	03 80       	ldd	r0, Z+3	; 0x03
- 5f4:	f4 81       	ldd	r31, Z+4	; 0x04
- 5f6:	e0 2d       	mov	r30, r0
- 5f8:	09 95       	icall
- 5fa:	0d c0       	rjmp	.+26     	; 0x616 <sos_scheduler+0xac>
- 5fc:	88 0f       	add	r24, r24
- 5fe:	99 1f       	adc	r25, r25
- 600:	88 0f       	add	r24, r24
- 602:	99 1f       	adc	r25, r25
- 604:	88 0f       	add	r24, r24
- 606:	99 1f       	adc	r25, r25
- 608:	fc 01       	movw	r30, r24
- 60a:	ef 59       	subi	r30, 0x9F	; 159
- 60c:	ff 4f       	sbci	r31, 0xFF	; 255
- 60e:	21 50       	subi	r18, 0x01	; 1
- 610:	31 09       	sbc	r19, r1
- 612:	37 83       	std	Z+7, r19	; 0x07
- 614:	26 83       	std	Z+6, r18	; 0x06
- 616:	cf 5f       	subi	r28, 0xFF	; 255
- 618:	c4 30       	cpi	r28, 0x04	; 4
- 61a:	08 f4       	brcc	.+2      	; 0x61e <sos_scheduler+0xb4>
- 61c:	a9 cf       	rjmp	.-174    	; 0x570 <sos_scheduler+0x6>
- 61e:	cf 91       	pop	r28
- 620:	08 95       	ret
+00000520 <sos_delete_task>:
+ 520:	90 e0       	ldi	r25, 0x00	; 0
+ 522:	fc 01       	movw	r30, r24
+ 524:	ee 0f       	add	r30, r30
+ 526:	ff 1f       	adc	r31, r31
+ 528:	ee 0f       	add	r30, r30
+ 52a:	ff 1f       	adc	r31, r31
+ 52c:	ee 0f       	add	r30, r30
+ 52e:	ff 1f       	adc	r31, r31
+ 530:	ef 59       	subi	r30, 0x9F	; 159
+ 532:	ff 4f       	sbci	r31, 0xFF	; 255
+ 534:	20 81       	ld	r18, Z
+ 536:	25 30       	cpi	r18, 0x05	; 5
+ 538:	d0 f4       	brcc	.+52     	; 0x56e <sos_delete_task+0x4e>
+ 53a:	fc 01       	movw	r30, r24
+ 53c:	ee 0f       	add	r30, r30
+ 53e:	ff 1f       	adc	r31, r31
+ 540:	ee 0f       	add	r30, r30
+ 542:	ff 1f       	adc	r31, r31
+ 544:	ee 0f       	add	r30, r30
+ 546:	ff 1f       	adc	r31, r31
+ 548:	ef 59       	subi	r30, 0x9F	; 159
+ 54a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 54c:	23 81       	ldd	r18, Z+3	; 0x03
+ 54e:	34 81       	ldd	r19, Z+4	; 0x04
+ 550:	23 2b       	or	r18, r19
+ 552:	79 f0       	breq	.+30     	; 0x572 <sos_delete_task+0x52>
+ 554:	88 0f       	add	r24, r24
+ 556:	99 1f       	adc	r25, r25
+ 558:	88 0f       	add	r24, r24
+ 55a:	99 1f       	adc	r25, r25
+ 55c:	88 0f       	add	r24, r24
+ 55e:	99 1f       	adc	r25, r25
+ 560:	fc 01       	movw	r30, r24
+ 562:	ef 59       	subi	r30, 0x9F	; 159
+ 564:	ff 4f       	sbci	r31, 0xFF	; 255
+ 566:	14 82       	std	Z+4, r1	; 0x04
+ 568:	13 82       	std	Z+3, r1	; 0x03
+ 56a:	81 e0       	ldi	r24, 0x01	; 1
+ 56c:	08 95       	ret
+ 56e:	80 e0       	ldi	r24, 0x00	; 0
+ 570:	08 95       	ret
+ 572:	80 e0       	ldi	r24, 0x00	; 0
+ 574:	08 95       	ret
 
-00000622 <sos_run>:
- 622:	0e 94 0e 02 	call	0x41c	; 0x41c <TMR0_start>
- 626:	08 95       	ret
+00000576 <sos_scheduler>:
+ 576:	cf 93       	push	r28
+ 578:	c0 e0       	ldi	r28, 0x00	; 0
+ 57a:	54 c0       	rjmp	.+168    	; 0x624 <sos_scheduler+0xae>
+ 57c:	8c 2f       	mov	r24, r28
+ 57e:	90 e0       	ldi	r25, 0x00	; 0
+ 580:	fc 01       	movw	r30, r24
+ 582:	ee 0f       	add	r30, r30
+ 584:	ff 1f       	adc	r31, r31
+ 586:	ee 0f       	add	r30, r30
+ 588:	ff 1f       	adc	r31, r31
+ 58a:	ee 0f       	add	r30, r30
+ 58c:	ff 1f       	adc	r31, r31
+ 58e:	ef 59       	subi	r30, 0x9F	; 159
+ 590:	ff 4f       	sbci	r31, 0xFF	; 255
+ 592:	03 80       	ldd	r0, Z+3	; 0x03
+ 594:	f4 81       	ldd	r31, Z+4	; 0x04
+ 596:	e0 2d       	mov	r30, r0
+ 598:	30 97       	sbiw	r30, 0x00	; 0
+ 59a:	09 f4       	brne	.+2      	; 0x59e <sos_scheduler+0x28>
+ 59c:	42 c0       	rjmp	.+132    	; 0x622 <sos_scheduler+0xac>
+ 59e:	dc 01       	movw	r26, r24
+ 5a0:	aa 0f       	add	r26, r26
+ 5a2:	bb 1f       	adc	r27, r27
+ 5a4:	aa 0f       	add	r26, r26
+ 5a6:	bb 1f       	adc	r27, r27
+ 5a8:	aa 0f       	add	r26, r26
+ 5aa:	bb 1f       	adc	r27, r27
+ 5ac:	af 59       	subi	r26, 0x9F	; 159
+ 5ae:	bf 4f       	sbci	r27, 0xFF	; 255
+ 5b0:	16 96       	adiw	r26, 0x06	; 6
+ 5b2:	2d 91       	ld	r18, X+
+ 5b4:	3c 91       	ld	r19, X
+ 5b6:	17 97       	sbiw	r26, 0x07	; 7
+ 5b8:	21 15       	cp	r18, r1
+ 5ba:	31 05       	cpc	r19, r1
+ 5bc:	29 f5       	brne	.+74     	; 0x608 <sos_scheduler+0x92>
+ 5be:	dc 01       	movw	r26, r24
+ 5c0:	aa 0f       	add	r26, r26
+ 5c2:	bb 1f       	adc	r27, r27
+ 5c4:	aa 0f       	add	r26, r26
+ 5c6:	bb 1f       	adc	r27, r27
+ 5c8:	aa 0f       	add	r26, r26
+ 5ca:	bb 1f       	adc	r27, r27
+ 5cc:	af 59       	subi	r26, 0x9F	; 159
+ 5ce:	bf 4f       	sbci	r27, 0xFF	; 255
+ 5d0:	15 96       	adiw	r26, 0x05	; 5
+ 5d2:	2c 91       	ld	r18, X
+ 5d4:	21 11       	cpse	r18, r1
+ 5d6:	05 c0       	rjmp	.+10     	; 0x5e2 <sos_scheduler+0x6c>
+ 5d8:	09 95       	icall
+ 5da:	8c 2f       	mov	r24, r28
+ 5dc:	0e 94 90 02 	call	0x520	; 0x520 <sos_delete_task>
+ 5e0:	20 c0       	rjmp	.+64     	; 0x622 <sos_scheduler+0xac>
+ 5e2:	88 0f       	add	r24, r24
+ 5e4:	99 1f       	adc	r25, r25
+ 5e6:	88 0f       	add	r24, r24
+ 5e8:	99 1f       	adc	r25, r25
+ 5ea:	88 0f       	add	r24, r24
+ 5ec:	99 1f       	adc	r25, r25
+ 5ee:	fc 01       	movw	r30, r24
+ 5f0:	ef 59       	subi	r30, 0x9F	; 159
+ 5f2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5f4:	81 81       	ldd	r24, Z+1	; 0x01
+ 5f6:	92 81       	ldd	r25, Z+2	; 0x02
+ 5f8:	01 97       	sbiw	r24, 0x01	; 1
+ 5fa:	97 83       	std	Z+7, r25	; 0x07
+ 5fc:	86 83       	std	Z+6, r24	; 0x06
+ 5fe:	03 80       	ldd	r0, Z+3	; 0x03
+ 600:	f4 81       	ldd	r31, Z+4	; 0x04
+ 602:	e0 2d       	mov	r30, r0
+ 604:	09 95       	icall
+ 606:	0d c0       	rjmp	.+26     	; 0x622 <sos_scheduler+0xac>
+ 608:	88 0f       	add	r24, r24
+ 60a:	99 1f       	adc	r25, r25
+ 60c:	88 0f       	add	r24, r24
+ 60e:	99 1f       	adc	r25, r25
+ 610:	88 0f       	add	r24, r24
+ 612:	99 1f       	adc	r25, r25
+ 614:	fc 01       	movw	r30, r24
+ 616:	ef 59       	subi	r30, 0x9F	; 159
+ 618:	ff 4f       	sbci	r31, 0xFF	; 255
+ 61a:	21 50       	subi	r18, 0x01	; 1
+ 61c:	31 09       	sbc	r19, r1
+ 61e:	37 83       	std	Z+7, r19	; 0x07
+ 620:	26 83       	std	Z+6, r18	; 0x06
+ 622:	cf 5f       	subi	r28, 0xFF	; 255
+ 624:	c4 30       	cpi	r28, 0x04	; 4
+ 626:	08 f4       	brcc	.+2      	; 0x62a <sos_scheduler+0xb4>
+ 628:	a9 cf       	rjmp	.-174    	; 0x57c <sos_scheduler+0x6>
+ 62a:	cf 91       	pop	r28
+ 62c:	08 95       	ret
 
-00000628 <sos_init>:
- 628:	85 eb       	ldi	r24, 0xB5	; 181
- 62a:	92 e0       	ldi	r25, 0x02	; 2
- 62c:	0e 94 24 02 	call	0x448	; 0x448 <TMR0_setcallback>
- 630:	0e 94 f7 01 	call	0x3ee	; 0x3ee <TMR0_init>
- 634:	08 95       	ret
+0000062e <sos_run>:
+ 62e:	0e 94 14 02 	call	0x428	; 0x428 <TMR0_start>
+ 632:	08 95       	ret
 
-00000636 <sos_disable>:
- 636:	0e 94 19 02 	call	0x432	; 0x432 <TMR0_stop>
- 63a:	08 95       	ret
+00000634 <sos_init>:
+ 634:	8b eb       	ldi	r24, 0xBB	; 187
+ 636:	92 e0       	ldi	r25, 0x02	; 2
+ 638:	0e 94 2a 02 	call	0x454	; 0x454 <TMR0_setcallback>
+ 63c:	0e 94 fd 01 	call	0x3fa	; 0x3fa <TMR0_init>
+ 640:	08 95       	ret
 
-0000063c <_exit>:
- 63c:	f8 94       	cli
+00000642 <sos_disable>:
+/** PARAMETERS  : VOID                                                **/
+/** RETURNS     : enu_system_status_t (ERROR STATUS)                  **/
+/***********************************************************************/
+enu_system_status_t sos_disable(void)
+{
+	TMR0_stop();  /** STOP TIMER 0 **/
+ 642:	0e 94 1f 02 	call	0x43e	; 0x43e <TMR0_stop>
+	
+	
+ 646:	08 95       	ret
 
-0000063e <__stop_program>:
- 63e:	ff cf       	rjmp	.-2      	; 0x63e <__stop_program>
+00000648 <_exit>:
+ 648:	f8 94       	cli
+
+0000064a <__stop_program>:
+ 64a:	ff cf       	rjmp	.-2      	; 0x64a <__stop_program>

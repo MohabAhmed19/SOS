@@ -37,7 +37,7 @@ void INT0_INIT(void);
 /** ARGUMENTS  : void (*ptr)(void) (PINTER TO CALL BACK FUNCTION)      **/
 /** RETURNS    : VOID                                                  **/
 /************************************************************************/
-void EXTINT2_setcallback( void (*ptr_func)(void) );
+void EXTINT0_setcallback( void (*ptr_func)(void) );
 
 /********************************************************/
 /** FUNCTION TO INITIALIZE INT1                         */
